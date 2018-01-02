@@ -12,10 +12,7 @@ namespace O7.DateTimeDataAnnotations
             => FormatErrorMessage(context.ModelMetadata.GetDisplayName());
 
         protected T GetValueFromProperty<T>(string propertyName, Type type, object instance)
-        {
-            var property = type.GetProperty(propertyName);
-            return (T)property.GetValue(instance);
-        }
+            => (T)type.GetProperty(propertyName).GetValue(instance);
 
         public override string FormatErrorMessage(string name)
             => string.Format(CultureInfo.CurrentCulture, ErrorMessageString, name);
